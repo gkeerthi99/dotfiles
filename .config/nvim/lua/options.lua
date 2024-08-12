@@ -1,0 +1,24 @@
+local opt = vim.opt
+local o = vim.o
+local g = vim.g
+
+-- Indenting options
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.smartindent = true
+o.expandtab = true
+
+-- Numbers
+o.number = true
+o.numberwidth = 4
+o.ruler = false
+
+-- Cursor line
+o.cursorline = true
+
+-- Save undo history
+opt.undofile = true
+
+-- Enable clipboard
+opt.clipboard = "unnamedplus"
