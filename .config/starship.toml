@@ -33,7 +33,7 @@ format = '[ $symbol\[$common_meaning$signal_name$maybe_int\]]($style)'
 disabled = false
 
 [git_branch]
-style = "bold #ef9f76	"
+style = "bold #ef9f76"
 
 # Make prompt a single line instead of two lines
 [line_break]
