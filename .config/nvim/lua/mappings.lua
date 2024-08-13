@@ -8,10 +8,10 @@ map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
-map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
-map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "switch window left" })
+map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "switch window right" })
+map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "switch window down" })
+map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "switch window up" })
 
 map("n", "<leader>`", "<C-^>", { desc = "switch to previous buffer" })
 
@@ -27,10 +27,10 @@ map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git 
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "telescope find files" })
 map(
-  "n",
-  "<leader>fa",
-  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-  { desc = "telescope find all files" }
+	"n",
+	"<leader>fa",
+	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+	{ desc = "telescope find all files" }
 )
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" }) -- Displays code action with Telescope UI
 
@@ -43,8 +43,8 @@ map("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Start or continue the
 
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
+	pattern = "*",
+	callback = function()
+		vim.lsp.buf.format()
+	end,
 })
