@@ -52,8 +52,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='eza -ax --icons=auto'
-alias ll='eza -ahl --git --git-repos --icons=auto'
+alias ls='eza -ax --group-directories-first --icons=auto'
+alias ll='eza -ahl --git --git-repos --group-directories-first --icons=auto'
 alias vim='nvim'
 
 # Shell integrations
