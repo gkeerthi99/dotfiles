@@ -57,6 +57,15 @@ alias ll='eza -ahl --git --git-repos --group-directories-first --icons=auto --no
 alias lt='eza -a --git-ignore --group-directories-first --icons --level=6 --tree'
 alias vim='nvim'
 
+# Catppuccin frappe theme for fzf
+export FZF_DEFAULT_OPTS=" \
+--color=border:#8caaee \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#ef9f76	 \
+--color=marker:#babbf1,fg+:#c6d0f5,prompt:#ef9f76,hl+:#e78284 \
+--sync
+"
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
