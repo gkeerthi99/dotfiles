@@ -1,4 +1,5 @@
 {
+  "ChatGPT.nvim": { "branch": "main", "commit": "f081338f07216a46d3915ce46c1fcb083bcb5016" },
   "LuaSnip": { "branch": "master", "commit": "b84eeb3641b08324287587b426ec974b888390d9" },
   "barbecue": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
   "catppuccin": { "branch": "main", "commit": "18bab5ec4c782cdf7d7525dbe89c60bfa02fc195" },
@@ -35,5 +36,6 @@
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "trouble.nvim": { "branch": "main", "commit": "6efc446226679fda0547c0fd6a7892fd5f5b15d8" },
   "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" }
 }
