@@ -53,7 +53,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='eza -ax --group-directories-first --icons=auto'
-alias ll='eza -ahl --git --git-repos --group-directories-first --icons=auto'
+alias ll='eza -ahl --git --git-repos --group-directories-first --icons=auto --no-user'
+alias lt='eza -a --git-ignore --group-directories-first --icons --level=6 --tree'
 alias vim='nvim'
 
 # Shell integrations
