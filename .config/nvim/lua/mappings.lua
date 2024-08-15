@@ -8,10 +8,10 @@ map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
-map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "switch window left" })
-map("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "switch window right" })
-map("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "switch window down" })
-map("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "switch window up" })
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "switch window left" })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "switch window right" })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "switch window down" })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "switch window up" })
 
 map("n", "<leader>`", "<C-^>", { desc = "switch to previous buffer" })
 
@@ -38,9 +38,12 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" 
 map("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "toggle neotree" })
 
 -- Debugger keybindings
-map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line" })
-map("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Start or continue the debugger" })
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line" })
+map("n", "<leader>dr", "<cmd>DapContinue <CR>", { desc = "Start or continue the debugger" })
 
+-- ChatGPT keybindings
+map("n", "<C-c>", "<cmd>ChatGPT<CR>", { desc = "Add breakpoint at line" })
+--
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
