@@ -66,6 +66,12 @@ export FZF_DEFAULT_OPTS=" \
 --sync
 "
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
+export FZF_ALT_C_COMMAND='find .'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
