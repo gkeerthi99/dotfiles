@@ -14,6 +14,9 @@ o.number = true
 o.numberwidth = 4
 o.ruler = false
 
+-- Enable sign column
+o.signcolumn = "yes"
+
 -- Cursor line
 o.cursorline = true
 
