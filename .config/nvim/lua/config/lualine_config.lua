@@ -1,8 +1,6 @@
 local M = {}
 
 function M.setup()
-	local filetype = { "filetype", icon_only = true }
-
 	local diagnostics = {
 		"diagnostics",
 		always_visible = true,
@@ -35,12 +33,31 @@ function M.setup()
 		always_visible = false,
 	}
 
+	local mode = {
+		"mode",
+		separator = { left = "", right = "" },
+		fmt = function(str)
+			local initials = ""
+			for part in str:gmatch("[^-]+") do
+				initials = initials .. part:sub(1, 1) .. "-"
+			end
+			return initials:sub(1, -2)
+		end,
+	}
+
+	local logo = {
+		function()
+			return ""
+		end,
+		color = { fg = "#a6d189", bg = "#51576d" },
+	}
+
 	local lualine = require("lualine")
 	lualine.setup({
 		options = {
 			icons_enabled = true,
 			theme = "auto",
-			component_separators = { left = "", right = "" },
+			component_separators = { left = "|", right = "|" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
 				statusline = {},
@@ -56,11 +73,11 @@ function M.setup()
 			},
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = { logo, mode },
 			lualine_b = {},
 			lualine_c = { "branch", diff },
-			lualine_x = { diagnostics, filetype, "fileformat" },
-			lualine_y = {},
+			lualine_x = { diagnostics, { "filetype", icon_only = true } },
+			lualine_y = { "fileformat" },
 			lualine_z = {},
 		},
 		inactive_sections = {
