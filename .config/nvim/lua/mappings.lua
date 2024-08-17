@@ -25,14 +25,20 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "telescope find files" })
+map(
+	"n",
+	"<leader>ff",
+	"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*'} })<CR>",
+	{ desc = "telescope find files" }
+)
 map(
 	"n",
 	"<leader>fa",
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "telescope find all files" }
 )
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" }) -- Displays code action with Telescope UI
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" })
+map("n", "<C-p>", "<cmd>Telescope projects<CR>", { desc = "find projects" })
 
 -- Neotree keybindings
 map("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "toggle neotree" })
