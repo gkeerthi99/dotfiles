@@ -26,16 +26,16 @@ map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map(
-	"n",
-	"<leader>ff",
-	"<cmd>lua require('telescope.builtin').find_files({ hidden = true, find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*'} })<CR>",
-	{ desc = "telescope find files" }
+  "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*'} })<CR>",
+  { desc = "telescope find files" }
 )
 map(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "telescope find all files" }
+  "n",
+  "<leader>fa",
+  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+  { desc = "telescope find all files" }
 )
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" })
 map("n", "<C-p>", "<cmd>Telescope projects<CR>", { desc = "find projects" })
@@ -52,8 +52,8 @@ map("n", "<C-c>", "<cmd>ChatGPT<CR>", { desc = "Add breakpoint at line" })
 --
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function()
-		vim.lsp.buf.format()
-	end,
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
 })
