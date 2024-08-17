@@ -49,7 +49,7 @@ map("n", "<leader>dr", "<cmd>DapContinue <CR>", { desc = "Start or continue the 
 
 -- ChatGPT keybindings
 map("n", "<C-c>", "<cmd>ChatGPT<CR>", { desc = "Add breakpoint at line" })
---
+
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
