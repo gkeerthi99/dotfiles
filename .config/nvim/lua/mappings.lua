@@ -36,7 +36,7 @@ map(
   { desc = "telescope find all files" }
 )
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" })
-map("n", "<C-p>", "<cmd>Telescope projects<CR>", { desc = "find projects" })
+map("n", "<leader>p", "<cmd>Telescope projects<CR>", { desc = "find projects" })
 
 -- Buffer keybindings
 map("n", "<leader>`", "<C-^>", { desc = "switch to previous buffer" })
