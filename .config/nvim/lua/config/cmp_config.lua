@@ -13,6 +13,18 @@ local function border(hl_name)
   }
 end
 
+local icons = {
+  Enum = " ",
+  Field = " ",
+  File = "",
+  Function = " ",
+  Keyword = " ",
+  Property = " ",
+  Snippet = " ",
+  Text = "󰊄",
+  Variable = " ",
+}
+
 local options = {
   completion = {
     border = border("completionBorder"),
@@ -75,6 +87,13 @@ local options = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
+  },
+
+  formatting = {
+    format = function(_, vim_item)
+      vim_item.kind = (icons[vim_item.kind] or "") .. " " .. vim_item.kind
+      return vim_item
+    end,
   },
 }
 
