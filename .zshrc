@@ -72,6 +72,10 @@ export FZF_ALT_C_COMMAND='find .'
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Exporth PATHs
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

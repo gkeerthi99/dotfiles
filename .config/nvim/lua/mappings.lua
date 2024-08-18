@@ -57,7 +57,18 @@ map("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "toggle neotree" })
 
 -- Debugger keybindings
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint <CR>", { desc = "add breakpoint at line" })
-map("n", "<leader>dr", "<cmd>DapContinue <CR>", { desc = "start or continue the debugger" })
+map("n", "<leader>ds", "<cmd>DapContinue <CR>", { desc = "start or continue the debugger" })
+local getSidebar = function()
+  local widgets = require("dap.ui.widgets")
+  local sidebar = widgets.sidebar(widgets.scopes)
+  sidebar.open()
+end
+map("n", "<leader>dus", function()
+  getSidebar()
+end, { desc = "start or continue the debugger" })
+-- Go debugger commands
+map("n", "<leader>dgt", "<cmd>lua require('dap-go').debug_test()<CR>", { desc = "start or continue the debugger" })
+map("n", "<leader>dgl", "<cmd>lua require('dap-go').debug_last()<CR>", { desc = "start or continue the debugger" })
 
 -- ChatGPT keybindings
 map("n", "<C-c>", "<cmd>ChatGPT<CR>", { desc = "open ChatGPT UI" })
