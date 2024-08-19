@@ -1,3 +1,7 @@
+# Stop backward kill on '/'
+autoload -U select-word-style
+select-word-style bash
+
 # S" et the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
