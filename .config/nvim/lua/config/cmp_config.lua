@@ -14,11 +14,13 @@ local function border(hl_name)
 end
 
 local icons = {
+  Class = " ",
   Enum = " ",
   Field = " ",
   File = "",
   Function = " ",
   Keyword = " ",
+  Module = "󰐱 ",
   Property = " ",
   Snippet = " ",
   Text = "󰊄",
