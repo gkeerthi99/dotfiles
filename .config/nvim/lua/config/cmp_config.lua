@@ -15,10 +15,12 @@ end
 
 local icons = {
   Class = " ",
+  Constant = " ",
   Enum = " ",
   Field = " ",
   File = "",
   Function = " ",
+  Interface = " ",
   Keyword = " ",
   Module = "󰩦 ",
   Property = " ",
