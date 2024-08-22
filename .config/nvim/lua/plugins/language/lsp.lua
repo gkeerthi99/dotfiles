@@ -1,4 +1,4 @@
-local servers = { "biome", "lua_ls", "pyright" }
+local servers = { "lua_ls", "pyright" }
 
 return {
   {
