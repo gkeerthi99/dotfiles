@@ -1,4 +1,4 @@
-local servers = { "lua_ls", "pyright" }
+local servers = { "prettierd", "lua_ls", "pyright" }
 
 return {
 	{
