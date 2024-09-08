@@ -1,4 +1,4 @@
-local servers = { "biome", "cssls", "html", "htmx", "lua_ls", "pyright", "tsserver" }
+local servers = { "biome", "cssls", "html", "htmx", "lua_ls", "pyright", "tailwindcss", "ts_ls" }
 
 return {
   {
