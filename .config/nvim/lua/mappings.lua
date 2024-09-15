@@ -75,9 +75,6 @@ map("n", "<leader>dgl", "<cmd>lua require('dap-go').debug_last()<CR>", { desc = 
 map("n", "<C-c>", "<cmd>ChatGPT<CR>", { desc = "open ChatGPT UI" })
 map("i", "<C-H>", "<C-w>", { noremap = true, silent = true })
 
--- LSP keybindings
-map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "rename with LSP", noremap = true, silent = true })
-
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
