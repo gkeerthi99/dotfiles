@@ -79,6 +79,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Exporth PATHs
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export NPMPATH=$HOME/bin/npm/
+export PATH=$PATH:$NPMPATH/bin
 
 # Shell integrations
 eval "$(fzf --zsh)"
