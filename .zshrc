@@ -67,7 +67,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#ef9f76	 \
 --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ef9f76,hl+:#e78284 \
---sync
+--multi
 "
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
