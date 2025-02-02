@@ -35,6 +35,11 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
+# Insert "sudo" at beginning of command
+insert_sudo () { BUFFER="sudo $BUFFER" CURSOR=${#BUFFER} }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -82,11 +87,6 @@ export PATH=$PATH:$GOPATH/bin
 export NPMPATH=$HOME/bin/npm/
 export PATH=$PATH:$NPMPATH/bin
 export DISPLAY=:0
-
-# Insert "sudo" at beginning of command
-insert_sudo () { zle beginning-of-line; zle -U "sudo " }
-zle -N insert-sudo insert_sudo
-bindkey "^[s" insert-sudo
 
 # Shell integrations
 eval "$(fzf --zsh)"
