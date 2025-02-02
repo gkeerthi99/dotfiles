@@ -83,6 +83,11 @@ export NPMPATH=$HOME/bin/npm/
 export PATH=$PATH:$NPMPATH/bin
 export DISPLAY=:0
 
+# Insert "sudo" at beginning of command
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
