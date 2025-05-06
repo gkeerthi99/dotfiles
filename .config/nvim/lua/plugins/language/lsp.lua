@@ -1,4 +1,5 @@
-local servers = { "biome", "cssls", "gopls", "html", "htmx", "lua_ls", "pyright", "tailwindcss", "templ", "ts_ls" }
+local servers = { "biome", "cssls", "gopls", "html", "htmx", "lua_ls", "pyright", "rust_analyzer", "tailwindcss", "templ",
+  "ts_ls" }
 
 return {
   {
@@ -28,28 +29,10 @@ return {
         })
       end
 
-      lspconfig.templ.setup({
+      lspconfig.clangd.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      })
-
-      lspconfig.tailwindcss.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
-        init_options = { userLanguages = { templ = "html" } },
-      })
-
-      lspconfig.html.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "html", "templ" },
-      })
-
-      lspconfig.htmx.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "html", "templ" },
+        cmd = { "clangd", "--header-insertion=iwyu" }, -- Auto include headers
       })
 
       lspconfig.gopls.setup({
@@ -65,10 +48,42 @@ return {
         },
       })
 
-      lspconfig.clangd.setup({
+      lspconfig.html.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        cmd = { "clangd", "--header-insertion=iwyu" }, -- Auto include headers
+        filetypes = { "html", "templ" },
+      })
+
+      lspconfig.htmx.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "html", "templ" },
+      })
+
+      lspconfig.rust_analyzer.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "rust" },
+        root_dir = util.root_pattern("Cargo.toml"),
+        settings = {
+          ['rust_analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            }
+          }
+        }
+      })
+
+      lspconfig.tailwindcss.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        init_options = { userLanguages = { templ = "html" } },
+      })
+
+      lspconfig.templ.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
       })
     end,
   },
