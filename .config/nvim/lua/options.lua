@@ -28,5 +28,8 @@ opt.clipboard = "unnamedplus"
 
 -- Diagnostics options
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = {
+    prefix = '',
+    spacing = 2,
+  },
 })
