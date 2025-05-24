@@ -24,16 +24,16 @@ map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map(
-	"n",
-	"<leader>ff",
-	"<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*', '--glob', '!node_modules/*'} })<CR>",
-	{ desc = "telescope find files" }
+  "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*', '--glob', '!node_modules/*'} })<CR>",
+  { desc = "telescope find files" }
 )
 map(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "telescope find all files" }
+  "n",
+  "<leader>fa",
+  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+  { desc = "telescope find all files" }
 )
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "display code actions" })
 map("n", "<leader>p", "<cmd>Telescope projects<CR>", { desc = "find projects" })
@@ -59,12 +59,12 @@ map("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "toggle neotree" })
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint <CR>", { desc = "add breakpoint at line" })
 map("n", "<leader>ds", "<cmd>DapContinue <CR>", { desc = "start or continue the debugger" })
 local getSidebar = function()
-	local widgets = require("dap.ui.widgets")
-	local sidebar = widgets.sidebar(widgets.scopes)
-	sidebar.open()
+  local widgets = require("dap.ui.widgets")
+  local sidebar = widgets.sidebar(widgets.scopes)
+  sidebar.open()
 end
 map("n", "<leader>dus", function()
-	getSidebar()
+  getSidebar()
 end, { desc = "start or continue the debugger" })
 
 -- Go debugger commands
@@ -77,8 +77,8 @@ map("i", "<C-H>", "<C-w>", { noremap = true, silent = true })
 
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function()
-		vim.lsp.buf.format()
-	end,
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
 })

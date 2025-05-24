@@ -25,3 +25,8 @@ opt.undofile = true
 
 -- Enable clipboard
 opt.clipboard = "unnamedplus"
+
+-- Diagnostics options
+vim.diagnostic.config({
+  virtual_text = true,
+})
