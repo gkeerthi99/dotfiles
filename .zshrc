@@ -86,6 +86,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export NPMPATH=$HOME/bin/npm/
 export PATH=$PATH:$NPMPATH/bin
+export PATH=$PATH:$HOME/.local/bin
 export DISPLAY=:0
 
 # Shell integrations
