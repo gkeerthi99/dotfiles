@@ -81,13 +81,14 @@ export FZF_ALT_C_COMMAND='find .'
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Exporth PATHs
+# Export PATHs
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export NPMPATH=$HOME/bin/npm/
 export PATH=$PATH:$NPMPATH/bin
 export PATH=$PATH:$HOME/.local/bin
 export DISPLAY=:0
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Shell integrations
 eval "$(fzf --zsh)"
