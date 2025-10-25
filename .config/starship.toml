@@ -1,0 +1,44 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[username]
+format = "[ ╭─$user]($style)"
+style_user = "bold blue"
+style_root = "bold blue"
+show_always = true
+
+[hostname]
+format = "[@$hostname]($style) in "
+style = "bold dimmed blue"
+ssh_only = false
+disabled = false
+
+[character]
+success_symbol = "[ ╰─λ](bold blue)"
+error_symbol = "[ ](bold red)"
+
+[cmd_duration]
+min_time = 10_000
+format = "took [$duration  ]($style)"
+
+[directory]
+style = "green"
+truncation_length = 0
+truncate_to_repo = true
+truncation_symbol = " "
+
+[status]
+symbol = '╰─'
+format = '[ $symbol\[$common_meaning$signal_name$maybe_int\]]($style)'
+disabled = false
+
+[git_branch]
+style = "bold #ef9f76"
+
+# Make prompt a single line instead of two lines
+[line_break]
+disabled = false 
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
