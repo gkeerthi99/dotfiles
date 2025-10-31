@@ -5,6 +5,7 @@ return {
 		---@module "ibl"
 		---@type ibl.config
 		opts = {
+			vim.api.nvim_set_hl(0, "IblScope", { link = "CmpItemAbbr" }),
 			indent = {
 				char = "│",
 			},
