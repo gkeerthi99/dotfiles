@@ -1,0 +1,86 @@
+[include]
+  path = ~/.gitconfig.local # add user.name and user.email here
+
+[alias]
+  browse = "!fd . --type f --hidden | fzf --preview 'bat --style=header,numbers --color=always {}'"
+
+  last = log -1 HEAD --pretty=fuller
+  ll = log --all --decorate --graph --oneline
+  today = log --all --graph --oneline --since='midnight' --pretty=format:'%C(yellow)%h%Creset%C(auto)%d%Creset %s %C(cyan)<%an>%Creset %Cgreen(%cr)'
+
+  commits = "!git log --decorate --oneline --color=always | fzf --ansi --preview 'git show --color=always {1} | delta --width=111' --preview-window=right:60%"
+  deleted = ls-files --deleted
+  modified = "!git ls-files --modified | fzf --preview 'git diff --color=always {} | delta --width=140' --preview-window=right:75%"
+  staged = "!git diff --name-only --cached | fzf --preview 'git diff --cached --color=always {} | delta --width=140' --preview-window=right:75%"
+  untracked = "!git ls-files --others --exclude-standard | fzf --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%"
+  restore-select = "!git ls-files --deleted | fzf --multi --preview 'git show HEAD:{} | bat' --preview-window=right:60% | xargs -r git restore"
+
+  cd = switch
+  mkdir = switch -c
+  rmdir = branch -d
+
+  uncommit = reset --soft HEAD^
+  unstage = reset HEAD --
+
+  discard = reset HEAD --hard
+  discardhunk = checkout -p
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = green bold
+  local = yellow dim
+  remote = cyan
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+
+[commit]
+  template = ~/.gitmessages/default.txt
+
+[core]
+  editor = nvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = monokai-classic side-by-side line-numbers decorations
+  navigate = true  # use n and N to move between diff sections
+
+[delta "monokai-classic"]
+	blame-palette = "#272822 #1d1e19 #161613 #3b3c35 #57584f"
+	commit-decoration-style = "#919288" bold box ul
+	dark = true
+	file-decoration-style = "#919288"
+	file-style = "#fdfff1"
+	hunk-header-decoration-style = "#919288" box ul
+	hunk-header-file-style = bold
+	hunk-header-line-number-style = bold "#c0c1b5"
+	hunk-header-style = file line-number syntax
+	line-numbers-left-style = "#919288"
+	line-numbers-minus-style = bold "#f92672"
+	line-numbers-plus-style = bold "#a6e22e"
+	line-numbers-right-style = "#919288"
+	line-numbers-zero-style = "#919288"
+	# 35% red 65% base
+	minus-emph-style = bold syntax "#5f3d49"
+	# 20% red 80% base
+	minus-style = syntax "#463a32"
+	# 35% green 65% base
+	plus-emph-style = bold syntax "#5b6747"
+	# 20% green 80% base
+	plus-style = syntax "#414732"
+	map-styles = \
+		bold purple => syntax "#ae81ff", \
+		bold blue => syntax "#66d9ef", \
+		bold cyan => syntax "#66d9ef", \
+		bold yellow => syntax "#e6db74"
+	syntax-theme = Monokai Classic
+
+[merge]
+  conflictStyle = zdiff3

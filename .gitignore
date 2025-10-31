@@ -1,0 +1,4 @@
+.config/nvim/lazy-lock.json
+.config/nvim/.luarc.json
+.config/nvim/lua/plugins/chatgpt.lua
+.config/tmux/plugins/

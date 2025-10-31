@@ -1,0 +1,67 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[username]
+format = "[ ╭─$user]($style)"
+style_user = "bold blue"
+style_root = "bold blue"
+show_always = true
+
+[hostname]
+format = "[@$hostname]($style) in "
+style = "bold dimmed blue"
+ssh_only = false
+disabled = false
+
+[character]
+success_symbol = "[ ╰─λ](bold blue)"
+error_symbol = "[ ](bold red)"
+
+[cmd_duration]
+min_time = 10_000
+format = "took [$duration  ]($style)"
+
+[directory]
+style = "green"
+truncation_length = 0
+truncate_to_repo = true
+truncation_symbol = " "
+
+[status]
+symbol = '╰─'
+format = '[ $symbol\[$common_meaning$signal_name$maybe_int\]]($style)'
+disabled = false
+
+# Monokai Classic 'color6' here
+[git_branch]
+style = "bold #fd971f"
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+am = '[📬 APPLYING MAILS](bold purple)'
+bisect = '[🔎 BISECTING](bold cyan)'
+cherry_pick = '[🍒 PICKING](bold red)'
+merge = '[🔀 MERGING](bold green)'
+rebase = '[🌱 REBASING](bold yellow)'
+revert = '[↩️ REVERTING](bold blue)'
+
+[git_status]
+format = '[$staged$modified$untracked$stashed$renamed$deleted$conflicted$typechanged$ahead_behind]($style)'
+ahead = '[🚀𝓬$count ](bold cyan)'
+behind = '[🐢𝓬$count ](bold purple)'
+diverged = '🦠[⇡𝓬$ahead_count](bold cyan)[⇣𝓬$ahead_count](bold purple)'
+up_to_date = '🆕'
+conflicted = '⚔️·$count '
+untracked = '[🚧·$count ](bold purple)'
+stashed = '[📦·$count ](bold green)'
+modified = '[📝·$count ](bold yellow)'
+staged = '[📤·$count ](bold green)'
+renamed = '[✍️·$count ](bold yellow)'
+deleted = '🗑️-$count '
+
+# Make prompt a single line instead of two lines
+[line_break]
+disabled = false 
+
+[package]
+format = 'via [🎁 $version](208 bold) '
