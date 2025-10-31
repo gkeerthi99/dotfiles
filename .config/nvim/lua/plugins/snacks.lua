@@ -121,6 +121,13 @@ return {
     }
   },
   init = function()
+    -- Monokai Classic for Picker
+    vim.api.nvim_set_hl(0, "SnacksPickerInput", { bg = "#272822" });
+    vim.api.nvim_set_hl(0, "SnacksPickerBox", { bg = "#272822" });
+    vim.api.nvim_set_hl(0, "SnacksPickerPreview", { bg = "#272822" });
+    vim.api.nvim_set_hl(0, "SnacksPickerList", { bg = "#272822" });
+    vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = "#3b3c35" });
+    vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#6e7066" });
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()
