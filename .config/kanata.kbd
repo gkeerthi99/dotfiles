@@ -14,7 +14,7 @@
   streak-count 3
   streak-time 275
   tap-timeout 200
-  hold-timeout 400
+  hold-timeout 350
   chord-timeout 100
 )
 
