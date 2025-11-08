@@ -6,8 +6,10 @@ local g = vim.g
 o.tabstop = 2
 o.softtabstop = 2
 o.shiftwidth = 2
-o.smartindent = true
+o.autoindent = true
+o.smartindent = false
 o.expandtab = true
+vim.cmd([[filetype plugin indent on]])
 
 -- Numbers
 o.number = true
@@ -28,10 +30,16 @@ opt.clipboard = "unnamedplus"
 
 -- Diagnostics options
 vim.diagnostic.config({
-	virtual_text = {
-		prefix = "",
-		spacing = 2,
+	signs = {
+		active = true,
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
 	},
+	virtual_text = false,
 })
 
 -- Format file on save
