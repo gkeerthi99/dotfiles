@@ -22,6 +22,7 @@ local icons = {
 	EnumMember = " ",
 	Field = " ",
 	File = " ",
+	Folder = " ",
 	Function = "󰊕 ",
 	Interface = " ",
 	Keyword = " ",
@@ -32,6 +33,8 @@ local icons = {
 	Snippet = " ",
 	Struct = " ",
 	Text = "󰊄 ",
+	TypeParameter = " ",
+	Value = " ",
 	Variable = " ",
 }
 
