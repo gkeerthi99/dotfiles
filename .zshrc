@@ -1,5 +1,3 @@
-# !!!!!!!
-# Stop backward kill on '/'
 autoload -U select-word-style
 select-word-style bash
 
@@ -80,16 +78,19 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_ALT_C_COMMAND='find .'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Export PATHs
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export NPMPATH=$HOME/bin/npm/
-export PATH=$PATH:$NPMPATH/bin
-export PATH=$PATH:$HOME/.local/bin
-export DISPLAY=:0
+# Export enviroment variables
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+typeset -U path
+path+=("$HOME/.local/bin" "$HOME/go/bin" )
+
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
+
