@@ -61,7 +61,7 @@ H@:         :HHHHHHHHHHHHHHHHHHX,    =@H
     sections = {
       { section = "header" },
       { section = "keys",   gap = 1, padding = 2 },
-      { footer = '“The future is already here — it’s just not evenly distributed.” — William Gibson' },
+      { footer = 'THE TRUTH IS OUT THERE' },
     },
     -- Monokai Classic
     vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = "#a6e22e", bold = true }),
