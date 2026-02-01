@@ -33,7 +33,7 @@ format = '[ $symbol\[$common_meaning$signal_name$maybe_int\]]($style)'
 disabled = false
 
 [git_branch]
-style = "bold cyan"
+style = "bold purple"
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
@@ -63,4 +63,4 @@ deleted = '🗑️-$count '
 disabled = false 
 
 [package]
-format = 'via [🎁 $version](208 bold) '
+format = 'via [🎁 $version](bold cyan) '
