@@ -8,7 +8,7 @@
           "right": 5,         // Right padding
       },
       "color": {             // Override logo colors
-        "1": "white",
+        "1": "light_black",
     }
   },
   "display": {
