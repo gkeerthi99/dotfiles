@@ -1,0 +1,87 @@
+{
+  "logo": {
+      "type": "file",        // Logo type: auto, builtin, small, file, etc.
+      "source": "/home/kirti/Downloads/black-mesa-02.txt",
+      "padding": {
+          "top": 1,          // Top padding
+          "left": 1,         // Left padding
+          "right": 5,         // Right padding
+      },
+      "color": {             // Override logo colors
+        "1": "white",
+    }
+  },
+  "display": {
+      "separator": " ",     // Separator between keys and values
+      "key": {
+        "width": 25,
+      },
+      "color": {
+        "keys": "cyan",    // Key color
+        "separator": "light_black",    // Key color
+      },
+      "percent":{
+        "type": 3,         // 1=number, 2=bar, 3=both, 9=colored number
+        "color": {
+            "green": "green",
+            "yellow": "yellow",
+            "red": "red",
+      },
+    },
+  },
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "modules": [
+    "break",
+    "break",
+    "break",
+    "title",
+    {
+      "type": "separator",
+      "string": "━",
+    },
+    {
+      "type": "os",
+      "key": "{sysname} \u001b[90m─────────────────\u001b[0m"
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel \u001b[90m────────────────\u001b[0m"
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime \u001b[90m────────────────\u001b[0m"
+    },
+    {
+      "type": "packages",
+      "key": "Packages \u001b[90m──────────────\u001b[0m"
+    },
+    {
+      "type": "shell",
+      "key": "Shell \u001b[90m─────────────────\u001b[0m"
+    },
+    {
+      "type": "cpu",
+      "key": "CPU \u001b[90m───────────────────\u001b[0m"
+    },
+    {
+      "type": "gpu",
+      "key": "GPU \u001b[90m───────────────────\u001b[0m"
+    },
+    {
+      "type": "memory",
+      "key": "Memory \u001b[90m────────────────\u001b[0m"
+    },
+    {
+      "type": "swap",
+      "key": "Swap \u001b[90m──────────────────\u001b[0m"
+    },
+    {
+      "type": "Disk",
+      "key": "Disk \u001b[90m──────────────────\u001b[0m"
+    },
+    "battery",
+    "poweradapter",
+    "break",
+    "colors"
+  ]
+}
