@@ -1,7 +1,7 @@
 {
   "logo": {
       "type": "file",        // Logo type: auto, builtin, small, file, etc.
-      "source": "/home/kirti/Downloads/black-mesa-02.txt",
+      "source": "$HOME/.config/ascii/logos/black-mesa-03.txt",
       "padding": {
           "top": 1,          // Top padding
           "left": 1,         // Left padding
