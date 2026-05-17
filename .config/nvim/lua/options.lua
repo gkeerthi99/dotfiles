@@ -2,6 +2,9 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
+-- Enable termguicolors
+vim.opt.termguicolors = true
+
 -- Indenting options
 o.tabstop = 2
 o.softtabstop = 2
@@ -42,7 +45,6 @@ vim.diagnostic.config({
 	virtual_text = false,
 })
 
-
 -- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
@@ -50,9 +52,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.format()
 	end,
 })
-
--- Custom highlights
-vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { link = "@string" })
-vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "@function.call" })
-vim.api.nvim_set_hl(0, "SnacksDashboardFooter", { link = "@comment" })
-vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { link = "@variable.builtin" })
