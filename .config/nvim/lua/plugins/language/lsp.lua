@@ -57,6 +57,7 @@ return {
 				settings = {
 					gopls = {
 						completeUnimported = true,
+						semanticTokens = true,
 					},
 				},
 			})
@@ -83,7 +84,7 @@ return {
 			})
 
 			vim.lsp.config("tailwindcss", {
-				filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+				filetypes = { "templ", "astro", "javascript", "typescript" },
 				init_options = { userLanguages = { templ = "html" } },
 			})
 		end,
