@@ -49,7 +49,7 @@ function M.setup()
 		function()
 			return ""
 		end,
-		color = { fg = "#a6e22e", bg = "#3b3c35" }, --Monokai Classic
+		color = { fg = "#bcc313", bg = "#222629" }, --Hardhat theme
 	}
 
 	local lualine = require("lualine")
