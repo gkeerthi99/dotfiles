@@ -66,12 +66,12 @@ alias ll='eza -ahl --git --git-repos --group-directories-first --icons=auto --no
 alias lt='eza -a --git-ignore --group-directories-first --icons=auto --level=6 --tree'
 alias vim='nvim'
 
-# Monokai Classic theme for fzf
+# Hardhat theme for fzf
 export FZF_DEFAULT_OPTS=" \
---color=bg:#272822,bg+:#1d1e19,spinner:#fdfff1,hl:#f92672 \
---color=fg:#fdfff1,fg+:#fdfff1,header:#fd971f,info:#e6db74,pointer:#ae81ff \
---color=marker:#66d9ef,prompt:#fd971f,hl+:#f92672 \
---color=border:#1d1e19 \
+--color=bg:#222629,bg+:#2a2f33,spinner:#b6c2cc,hl:#dc483b \
+--color=fg:#b6c2cc,fg+:#bebebe,header:#d77d20,info:#d7ae00,pointer:#4ab0d6 \
+--color=marker:#2ca4aa,prompt:#d77d20,hl+:#ea8f86 \
+--color=border:#3d464c \
 --multi"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
@@ -90,6 +90,7 @@ path+=(
    "$HOME/go/bin"
    "$HOME/.local/bin"
    "$HOME/.luarocks/bin/" 
+   "$HOME/.opencode/bin/" 
 )
 
 # Shell integrations

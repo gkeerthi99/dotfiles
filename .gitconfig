@@ -49,38 +49,52 @@
   diffFilter = delta --color-only
 
 [delta]
-  features = monokai-classic side-by-side line-numbers decorations
-  navigate = true  # use n and N to move between diff sections
+  features = hardhat side-by-side line-numbers decorations
+  navigate = true
 
-[delta "monokai-classic"]
-	blame-palette = "#272822 #1d1e19 #161613 #3b3c35 #57584f"
-	commit-decoration-style = "#919288" bold box ul
-	dark = true
-	file-decoration-style = "#919288"
-	file-style = "#fdfff1"
-	hunk-header-decoration-style = "#919288" box ul
-	hunk-header-file-style = bold
-	hunk-header-line-number-style = bold "#c0c1b5"
-	hunk-header-style = file line-number syntax
-	line-numbers-left-style = "#919288"
-	line-numbers-minus-style = bold "#f92672"
-	line-numbers-plus-style = bold "#a6e22e"
-	line-numbers-right-style = "#919288"
-	line-numbers-zero-style = "#919288"
-	# 35% red 65% base
-	minus-emph-style = bold syntax "#5f3d49"
-	# 20% red 80% base
-	minus-style = syntax "#463a32"
-	# 35% green 65% base
-	plus-emph-style = bold syntax "#5b6747"
-	# 20% green 80% base
-	plus-style = syntax "#414732"
-	map-styles = \
-		bold purple => syntax "#ae81ff", \
-		bold blue => syntax "#66d9ef", \
-		bold cyan => syntax "#66d9ef", \
-		bold yellow => syntax "#e6db74"
-	syntax-theme = Monokai Classic
+[delta "hardhat"]
+    dark = true
+    syntax-theme = none
+
+    ## Base UI
+    file-style = "#b6c2cc"
+    file-decoration-style = "#646f73"
+
+    commit-decoration-style = "#646f73" bold box ul
+
+    hunk-header-style = file line-number syntax
+    hunk-header-file-style = bold "#bebebe"
+    hunk-header-line-number-style = bold "#86c7e3"
+    hunk-header-decoration-style = "#646f73" box ul
+
+    ## Line numbers
+    line-numbers-left-style = "#4f5258"
+    line-numbers-right-style = "#4f5258"
+    line-numbers-zero-style = "#646f73"
+
+    line-numbers-minus-style = bold "#dc483b"
+    line-numbers-plus-style = bold "#bcc313"
+
+    ## Diff colors
+    minus-style = syntax "#2f2324"
+    minus-emph-style = bold syntax "#5a2b2b"
+
+    plus-style = syntax "#2f3624"
+    plus-emph-style = bold syntax "#4b5a2b"
+
+    ## Blame
+    blame-palette = "#222629 #2a2f33 #181c21 #3d464c #4f5258"
+
+    ## Merge conflict / moved code mapping
+    map-styles = \
+        bold purple => syntax "#86c7e3", \
+        bold blue => syntax "#4ab0d6", \
+        bold cyan => syntax "#62c2c6", \
+        bold yellow => syntax "#f2cd63"
+
+    ## Misc
+    whitespace-error-style = reverse "#dc483b"
+    zero-style = syntax "#222629"
 
 [merge]
   conflictStyle = zdiff3
