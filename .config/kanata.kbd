@@ -1,5 +1,13 @@
+;; Kenkyo Kanata configuration
+;;
+;; This file implements the Kenkyo layout in Kanata, featuring:
+;; - Home row modifiers with "flowtap" logic to prevent misfires during fast typing.
+;; - 'Extend' layer for navigation and media controls.
+;; - 'Fumbol' layer for numbers, function keys, and symbols.
+;; - Chords for common keys and advanced symbol access.
+
 (defcfg
-;; You can set the value below to no if you only use the keys defined in defsrc.
+  ;; Process keys not explicitly defined in defsrc to ensure consistent state tracking.
   process-unmapped-keys yes
 )
 
@@ -11,24 +19,44 @@
 )
 
 (defvar
-  streak-count 3
-  streak-time 280
-  tap-timeout 200
-  hold-timeout 350
-  chord-timeout 100
+  ;; Timing variables for home row mods and chords
+  streak-count 3      ;; Number of keys to consider a "typing streak"
+  streak-time 325     ;; Max time (ms) window to maintain a streak
+  tap-timeout 200     ;; Max time (ms) for a tap to be recognized
+  hold-timeout 300    ;; Time (ms) to wait before a hold is recognized
+  chord-timeout 50    ;; Window (ms) to press keys together for a chord
 )
 
-(deftemplate charmod (char mod)
+;; Templates to simplify complex key behaviors
+
+;; 'flowtap' checks if you are typing fast. 
+;; If so, it immediately taps the key ($flow).
+;; Otherwise, it executes the tap/hold logic ($tap).
+(deftemplate flowtap (flow tap)
   (switch 
-    ((key-timing $streak-count less-than $streak-time)) $char break
-    () (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char) break
+    ((key-timing $streak-count less-than $streak-time)) $flow break
+    () $tap break
+  )
+)
+
+;; 'charmod' implements home row modifiers.
+;; It uses 'flowtap' to avoid mod misfires during fast typing.
+;; tap-hold-release-timeout resolves as a hold if another key is pressed and released.
+(deftemplate charmod (char mod)
+  (t! flowtap
+    $char
+    (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char reset-timeout-on-press)
   )
 )
 
 (defvirtualkeys
+  ;; Virtual keys for managing state when switching layers
   shift (multi (layer-switch main) lsft)
   clear (multi (layer-switch main) (on-press release-virtualkey shift))
 )
+
+;; Chord definitions for the 'main' layer
+;; These allow multiple keys to trigger a single action (e.g., w+e = esc)
 
 (defchords mtl $chord-timeout
   (w  ) w
@@ -55,10 +83,13 @@
 )
 
 (deflayermap (main)
+  ;; Top row chords
   w (chord mtl w)
   e (chord mtl e)
   i (chord mtr i)
   o (chord mtr o)
+
+  ;; Home row modifiers
   a (t! charmod a lmet)
   s (t! charmod s lalt)
   d (t! charmod d lsft)
@@ -67,6 +98,8 @@
   k (t! charmod k rsft)
   l (t! charmod l lalt)
   ; (t! charmod ; rmet)
+
+  ;; Bottom row modifiers
   z (t! charmod z lctl) 
   x (chord mbl x)
   c (chord mbl c)
@@ -75,22 +108,29 @@
   , (chord mbr ,)
   . (chord mbr .)
   / (t! charmod / rctl)
+
+  ;; Space overloaded to 'extend' layer with state clearing logic
   spc (t! charmod spc (multi (layer-switch extend) (on-release tap-virtualkey clear)))
 )
 
 (deflayermap (extend)
-  e (layer-switch fumbol)
-  r (on-press press-virtualkey shift)
+  ;; Navigation, media, and layer switching
+  e (on-press press-virtualkey shift)
+  r (layer-switch fumbol)
   y ins
   u home
   i up
   o end
   p pgup
+
+  ;; Modifiers
   a lmet
   s lalt
   d lsft
   f lctl
-;;g comp ;; Enable if not MacOS.
+  g comp
+
+  ;; Navigation & Media
   h esc
   j left
   k down
@@ -100,12 +140,16 @@
   x vold
   c volu
   v pp
+
+  ;; Shortcuts
   n tab
   m bspc
   , spc
   . del
   / ret
 )
+
+;; Chord definitions for the 'fumbol' layer (Function, Numbers, Symbols)
 
 (defchords ftl $chord-timeout
   (w  ) f2
@@ -117,6 +161,25 @@
   (i  ) f8
   (  o) f9
   (i o) bspc
+)
+
+;; Chords for numbers and math symbols on the home row
+(defchords fcl $chord-timeout
+ (s    ) (t! charmod 2 lalt)
+ (  d  ) (t! charmod 3 lsft) 
+ (    f) (t! charmod 4 lctl)
+ (s d  ) kp-
+ (  d f) kp+
+ (s   f) 🔢₌
+)
+
+(defchords fcr $chord-timeout
+ (j    ) (t! charmod 7 rctl)
+ (  k  ) (t! charmod 8 rsft)
+ (    l) (t! charmod 9 lalt)
+ (j k  ) kp/
+ (  k l) kp*
+ (j   l) .
 )
 
 (defchords fbl $chord-timeout
@@ -132,6 +195,7 @@
 )
 
 (deflayermap (fumbol)
+  ;; Top row: Function keys
   q f1
   w (chord ftl w)
   e (chord ftl e)
@@ -142,16 +206,20 @@
   i (chord ftr i)
   o (chord ftr o)
   p f10
+
+  ;; Home row: Numbers with mods and symbols
   a (t! charmod 1 lmet)
-  s (t! charmod 2 lalt)
-  d (t! charmod 3 lsft)
-  f (t! charmod 4 lctl)
+  s (chord fcl s)
+  d (chord fcl d)
+  f (chord fcl f)
   g 5
   h 6
-  j (t! charmod 7 rctl)
-  k (t! charmod 8 rsft)
-  l (t! charmod 9 lalt)
+  j (chord fcr j)
+  k (chord fcr k)
+  l (chord fcr l)
   ; (t! charmod 0 rmet)
+
+  ;; Bottom row: Symbols
   z (t! charmod lsgt lctl)
   x (chord fbl x)
   c (chord fbl c)
