@@ -36,9 +36,10 @@ typeset -U path
 # Add paths
 path+=(
    "$HOME/go/bin"
+   "$HOME/.bun/bin"
    "$HOME/.local/bin"
-   "$HOME/.luarocks/bin/" 
-   "$HOME/.opencode/bin/" 
+   "$HOME/.luarocks/bin" 
+   "$HOME/.opencode/bin" 
 )
 
 # NVM
@@ -136,6 +137,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # load nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # load nvm bash_completion
+
+# bun completions
+[ -s "/home/kirti/.bun/_bun" ] && source "/home/kirti/.bun/_bun"
 
 # ───────────────────────────────────────────────────────────────────────────────
 # Startup
