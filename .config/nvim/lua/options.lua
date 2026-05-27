@@ -2,8 +2,9 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
--- Enable termguicolors
+-- Colour options
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 -- Indenting options
 o.tabstop = 2
