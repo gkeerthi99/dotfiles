@@ -1,3 +1,9 @@
+local servers = {
+	"codelldb",
+	"delve",
+	"python",
+}
+
 return {
 	{
 		"rcarriga/nvim-dap-ui",
@@ -25,15 +31,12 @@ return {
 		"jay-babu/mason-nvim-dap.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"williamboman/mason.nvim",
+			"mason-org/mason.nvim",
 			"mfussenegger/nvim-dap",
 		},
 		opts = {
 			handlers = {},
-			ensure_installed = {
-				"codelldb",
-				"debugpy",
-			},
+			ensure_installed = servers,
 		},
 	},
 	{
@@ -43,6 +46,6 @@ return {
 		"leoluz/nvim-dap-go",
 		ft = "go",
 		dependencies = "mfussenegger/nvim-dap",
-		config = function(_, opts) end,
+		opts = {},
 	},
 }

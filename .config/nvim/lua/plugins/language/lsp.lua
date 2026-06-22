@@ -6,7 +6,9 @@ local servers = {
 	"gopls",
 	"html",
 	"htmx",
+	"luacheck",
 	"lua_ls",
+	"prettierd",
 	"ruff",
 	"rust_analyzer",
 	"tailwindcss",
@@ -21,6 +23,9 @@ return {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
 			ensure_installed = servers,
 		},
@@ -37,9 +42,25 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.config("basedpyright", {
+				settings = {
+					basedpyright = {
+						disableOrganizeImports = true, -- ruff organizes imports
+						-- analysis = { ignore = { '*' } }, -- ruff does linting
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "openFilesOnly",
+							typeCheckingMode = "basic",
+							diagnosticSeverityOverrides = {
+								reportOptionalMemberAccess = false, -- "warning"
+							},
+						},
+					},
+				},
+			})
+
 			vim.lsp.config("clangd", {
-				on_attach = on_attach,
-				capabilities = capabilities,
 				cmd = {
 					"clangd",
 					"--function-arg-placeholders=0",
@@ -47,7 +68,7 @@ return {
 					"--header-insertion-decorators",
 				},
 			})
-			vim.lsp.enable({ "clangd" })
+			vim.lsp.enable("clangd")
 
 			vim.lsp.config("gopls", {
 				cmd = { "gopls" },
@@ -70,6 +91,16 @@ return {
 				filetypes = { "html", "templ" },
 			})
 
+			vim.lsp.config("ruff", {
+				init_options = {
+					settings = {
+						lint = {
+							enable = false, -- use basedpyright for linting, ruff for formatting
+						},
+					},
+				},
+			})
+
 			vim.lsp.config("rust_analyzer", {
 				filetypes = { "rust" },
 				root_markers = { "Cargo.toml" },
@@ -87,6 +118,8 @@ return {
 				filetypes = { "templ", "astro", "javascript", "typescript" },
 				init_options = { userLanguages = { templ = "html" } },
 			})
+
+			vim.lsp.enable(servers)
 		end,
 	},
 }
