@@ -7,8 +7,8 @@ function M.setup()
 		sections = { "error", "warn", "info" },
 		symbols = {
 			error = " ",
-			warn = " ",
-			info = " ",
+			warn  = " ",
+			info  = " ",
 		},
 	}
 
@@ -18,16 +18,16 @@ function M.setup()
 			local gitsigns = vim.b.gitsigns_status_dict
 			if gitsigns then
 				return {
-					added = gitsigns.added,
+					added    = gitsigns.added,
 					modified = gitsigns.changed,
-					removed = gitsigns.removed,
+					removed  = gitsigns.removed,
 				}
 			end
 		end,
 		symbols = {
-			added = " ",
+			added    = " ",
 			modified = " ",
-			removed = " ",
+			removed  = " ",
 		},
 		colored = true,
 		always_visible = false,
