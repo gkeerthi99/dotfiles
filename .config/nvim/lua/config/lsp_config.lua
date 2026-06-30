@@ -51,4 +51,9 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
+M.capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
 return M
