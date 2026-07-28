@@ -86,7 +86,7 @@ function M.virt_text_handler(virtText, lnum, endLnum, width, truncate)
     end
     curWidth = curWidth + chunkWidth
   end
-  table.insert(newVirtText, { suffix, 'MoreMsg' })
+  table.insert(newVirtText, { suffix, 'Comment' })
   return newVirtText
 end
 
@@ -97,7 +97,6 @@ function M.setup()
       vim.defer_fn(M.open_comment_folds, 100)
     end,
   })
-  vim.api.nvim_set_hl(0, "MoreMsg", { link = "Comment" })
 end
 
 return M
