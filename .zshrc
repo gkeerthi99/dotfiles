@@ -11,15 +11,16 @@ bindkey -e
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
 
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_expire_dups_first
 setopt hist_find_no_dups
+setopt hist_save_no_dups
+setopt extendedglob
 
 zshaddhistory() {
    whence ${${(z)1}[1]} >| /dev/null || return 1 
@@ -42,9 +43,6 @@ path+=(
    "$HOME/.opencode/bin" 
 )
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-
 # Hardhat theme for fzf
 export FZF_DEFAULT_OPTS=" \
 --color=border:#3d464c \
@@ -56,7 +54,7 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
-export FZF_ALT_C_COMMAND='find .'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # ───────────────────────────────────────────────────────────────────────────────
@@ -74,25 +72,33 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # ----- Plugins -----
-zinit light zsh-users/zsh-autosuggestions
+zinit ice blockf
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-syntax-highlighting
+
+zinit light zsh-users/zsh-autosuggestions
+zinit wait lucid for \
+  zsh-users/zsh-syntax-highlighting
 
 # ~Load completions~
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  echo -e " \e[90m.//FULL compinit...\e[0m"
+  compinit
+done
+compinit -C
+
 zinit cdreplay -q
 
 # UI completion plugin
 zinit light Aloxaf/fzf-tab
 
 # ----- Snippets -----
-zinit snippet OMZL::async_prompt.zsh
-zinit snippet OMZL::compfix.zsh
-zinit snippet OMZP::direnv
-zinit snippet OMZL::functions.zsh
-
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::sudo
+zinit wait lucid for \
+  OMZL::compfix.zsh \
+  OMZP::direnv \
+  OMZL::functions.zsh \
+  OMZP::command-not-found \
+  OMZP::sudo
 
 # ───────────────────────────────────────────────────────────────────────────────
 # Completion Styling
@@ -119,27 +125,51 @@ alias vim='nvim'
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-# Alt+s prepends 'sudo' to command 
-insert_sudo () { BUFFER="sudo $BUFFER" CURSOR=${#BUFFER} }
-zle -N insert-sudo insert_sudo
-bindkey "^[s" insert-sudo
-
 # ───────────────────────────────────────────────────────────────────────────────
 # External Tool Initialisations
 # ───────────────────────────────────────────────────────────────────────────────
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(starship init zsh)"
 
-# Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Cache directory
+ZSH_CACHE_DIR="$HOME/.cache/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
+_cache_eval() {
+  local name="$1"
+  local cache="$ZSH_CACHE_DIR/$1.zsh"
+  shift
+  if [[ ! -s "$cache" ]] || [[ "$(command -v "$1")" -nt "$cache" ]]; then
+    echo -e " \e[90m.//Recompiling cache...\e[0m"
+    "$@" > "$cache"
+    rm -f "$cache.zwc"
+    zcompile "$cache"
+  fi
+  source "$cache"
+}
+
+_cache_eval fzf fzf --zsh
+_cache_eval zoxide zoxide init --cmd cd zsh
+_cache_eval starship starship init zsh
+_cache_eval brew /home/linuxbrew/.linuxbrew/bin/brew shellenv
+
+# Bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # NVM
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # load nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # load nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
-# bun completions
-[ -s "/home/kirti/.bun/_bun" ] && source "/home/kirti/.bun/_bun"
+# SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
+sdk() {
+  unset -f sdk
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
 
 # ───────────────────────────────────────────────────────────────────────────────
 # Startup
