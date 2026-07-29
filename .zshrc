@@ -97,8 +97,7 @@ zinit wait lucid for \
   OMZL::compfix.zsh \
   OMZP::direnv \
   OMZL::functions.zsh \
-  OMZP::command-not-found \
-  OMZP::sudo
+  OMZP::command-not-found
 
 # ───────────────────────────────────────────────────────────────────────────────
 # Completion Styling
@@ -124,6 +123,11 @@ alias vim='nvim'
 # ───────────────────────────────────────────────────────────────────────────────
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+
+# Alt+s to prepend 'sudo' to command 
+insert_sudo () { BUFFER="sudo $BUFFER" CURSOR=${#BUFFER} }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
 
 # ───────────────────────────────────────────────────────────────────────────────
 # External Tool Initialisations
