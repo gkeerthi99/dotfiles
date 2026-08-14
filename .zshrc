@@ -57,6 +57,10 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Cache directory
+ZSH_CACHE_DIR="$HOME/.cache/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
 # ───────────────────────────────────────────────────────────────────────────────
 # Zinit
 # ───────────────────────────────────────────────────────────────────────────────
@@ -81,11 +85,15 @@ zinit wait lucid for \
 
 # ~Load completions~
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+zcompdump="$ZSH_CACHE_DIR/zcompdump"
+
+if [[ ! -f "$zcompdump" ]] || [[ -n "$zcompdump"(#qN.mh+24) ]]; then
   echo -e " \e[90m.//FULL compinit...\e[0m"
-  compinit
-done
-compinit -C
+  rm -f "$zcompdump"*
+  compinit -d $zcompdump
+else
+  compinit -C -d "$zcompdump"
+fi
 
 zinit cdreplay -q
 
@@ -133,10 +141,7 @@ bindkey "^[s" insert-sudo
 # External Tool Initialisations
 # ───────────────────────────────────────────────────────────────────────────────
 
-# Cache directory
-ZSH_CACHE_DIR="$HOME/.cache/zsh"
-mkdir -p "$ZSH_CACHE_DIR"
-
+# Cache tools
 _cache_eval() {
   local name="$1"
   local cache="$ZSH_CACHE_DIR/$1.zsh"
@@ -156,7 +161,10 @@ _cache_eval starship starship init zsh
 _cache_eval brew /home/linuxbrew/.linuxbrew/bin/brew shellenv
 
 # Bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+if [[ ! -f $ZSH_CACHE_DIR/completions/_bun ]]; then
+  echo -e " \e[90m.//Loading Bun completions...\e[0m"
+  bun completions > $ZSH_CACHE_DIR/completions/_bun
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -166,6 +174,13 @@ nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
   nvm "$@"
 }
+
+# Add NVM binaries to path if default version is set
+if [[ -f "$NVM_DIR/alias/default" ]]; then
+  nvm_default_version=$(<"$NVM_DIR/alias/default")
+  nvm_bin_dir="$NVM_DIR/versions/node/v${nvm_default_version#v}/bin"
+  [[ -d "$nvm_bin_dir" ]] && path+=("$nvm_bin_dir")
+fi
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
