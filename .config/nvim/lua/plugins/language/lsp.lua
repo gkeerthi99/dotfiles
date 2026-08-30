@@ -6,6 +6,8 @@ local servers = {
 	"gopls",
 	"html",
 	"htmx",
+	"kotlin_lsp",
+	"ktlint",
 	"luacheck",
 	"lua_ls",
 	"prettierd",
@@ -89,6 +91,19 @@ return {
 
 			vim.lsp.config("htmx", {
 				filetypes = { "html", "templ" },
+			})
+
+			vim.lsp.config("kotlin_lsp", {
+				root_markers = {
+					"settings.gradle.kts",
+					"settings.gradle",
+					"build.gradle.kts",
+					"build.gradle",
+					"pom.xml",
+					"gradlew",
+					"mvnw",
+					".git",
+				},
 			})
 
 			vim.lsp.config("ruff", {

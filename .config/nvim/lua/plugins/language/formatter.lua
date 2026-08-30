@@ -6,6 +6,7 @@ return {
 			cpp = { "clang_format" },
 			go = { "gofmt" },
 			javascript = { "biome", stop_after_first = true },
+			kotlin = { "ktlint" },
 			markdown = { "prettierd" },
 			python = { "ruff_format" },
 			rust = { "rustfmt", lsp_format = "fallback" },
