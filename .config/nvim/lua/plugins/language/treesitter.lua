@@ -12,7 +12,9 @@ return {
 			ensure_installed = { "lua", "regex", "vim", "vimdoc" },
 			sync_install = true,
 			highlight = { enable = true },
-			indent = { enable = true },
+			indent = {
+				disable = { "c","cpp" },
+			},
 			textobjects = {
 				swap = {
 					enable = true,

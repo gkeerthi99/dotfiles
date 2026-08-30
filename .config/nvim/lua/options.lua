@@ -12,6 +12,7 @@ o.softtabstop       = 2
 o.shiftwidth        = 2
 o.autoindent        = true
 o.smartindent       = false
+o.cindent						= true
 o.expandtab         = true
 vim.cmd([[filetype plugin indent on]])
 
